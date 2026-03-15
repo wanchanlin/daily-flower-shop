@@ -22,14 +22,21 @@ export function SubscriptionCard({ plan, href = "/subscribe" }: SubscriptionCard
     <div
       className={`flex flex-col justify-between rounded-3xl border bg-white/90 p-6 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-md dark:bg-zinc-950/80 ${
         plan.highlight
-          ? "border-rose-300/80 ring-2 ring-rose-200 dark:border-rose-500/80 dark:ring-rose-500/40"
-          : "border-rose-100/70 dark:border-zinc-800"
+          ? "border-emerald-300/80 ring-2 ring-emerald-200 dark:border-emerald-500/80 dark:ring-emerald-500/40"
+          : "border-emerald-50/80 dark:border-zinc-800"
       }`}
     >
       <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500 dark:text-rose-300">
-          {plan.name}
-        </p>
+        <div className="flex items-center gap-2">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-sm">
+            {plan.id === "daily" && "🌞"}
+            {plan.id === "weekly" && "📅"}
+            {plan.id === "monthly" && "🌙"}
+          </span>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-500 dark:text-emerald-300">
+            {plan.name}
+          </p>
+        </div>
         <p className="text-sm text-zinc-600 dark:text-zinc-400">{plan.tagline}</p>
         <div className="mt-2 flex items-baseline gap-1">
           <span className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
@@ -47,13 +54,14 @@ export function SubscriptionCard({ plan, href = "/subscribe" }: SubscriptionCard
         </p>
         <Link
           href={`${href}?plan=${plan.id}`}
-          className={`inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition ${
+          className={`inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition ${
             plan.highlight
-              ? "bg-zinc-900 text-zinc-50 shadow-sm hover:bg-zinc-700 dark:bg-rose-400 dark:text-black dark:hover:bg-rose-300"
-              : "border border-zinc-200 bg-white/80 text-zinc-800 hover:bg-rose-50 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-100 dark:hover:bg-zinc-900"
+              ? "bg-emerald-500 text-emerald-950 shadow-sm hover:bg-emerald-600 dark:bg-emerald-400 dark:text-black dark:hover:bg-emerald-300"
+              : "border border-emerald-100 bg-white/80 text-zinc-800 hover:bg-emerald-50 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-100 dark:hover:bg-zinc-900"
           }`}
         >
-          Choose {plan.name.toLowerCase()}
+          <span>Choose {plan.name.toLowerCase()}</span>
+          <span aria-hidden>➜</span>
         </Link>
       </div>
     </div>

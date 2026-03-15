@@ -1,26 +1,27 @@
 import Link from "next/link";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/flowers", label: "Flowers" },
-  { href: "/subscribe", label: "Subscribe" },
-  { href: "/account", label: "Account" },
+  { href: "/", label: "Home", icon: "🏡" },
+  { href: "/flowers", label: "Flowers", icon: "🌷" },
+  { href: "/subscribe", label: "Subscribe", icon: "📦" },
+  { href: "/account", label: "Account", icon: "👤" },
 ];
 
 export function Navbar() {
   return (
-    <header className="border-b border-rose-100/70 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/70">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <header className="border-b border-emerald-100/70 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/70">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-rose-400 to-amber-300 text-sm font-semibold text-white shadow-sm">
-            🌸
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-300 via-rose-300 to-amber-200 text-sm font-semibold text-white shadow-sm">
+            🌼
           </span>
           <div className="leading-tight">
             <span className="block text-sm font-semibold tracking-tight">
               Daily Flower Shop
             </span>
-            <span className="block text-[0.65rem] uppercase tracking-[0.18em] text-rose-500 dark:text-rose-300">
-              Fresh blooms, on repeat
+            <span className="block text-[0.65rem] uppercase tracking-[0.18em] text-emerald-500 dark:text-emerald-300">
+              Fresh blooms, light days
             </span>
           </div>
         </Link>
@@ -30,19 +31,24 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-1 text-xs uppercase tracking-[0.16em] text-zinc-600 transition hover:bg-rose-50 hover:text-rose-700 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-rose-300"
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.7rem] uppercase tracking-[0.16em] text-zinc-600 transition hover:bg-emerald-50 hover:text-emerald-700 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-emerald-300"
             >
-              {link.label}
+              <span aria-hidden>{link.icon}</span>
+              <span>{link.label}</span>
             </Link>
           ))}
         </nav>
 
-        <Link
-          href="/subscribe"
-          className="inline-flex items-center rounded-full bg-zinc-900 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-50 shadow-sm transition hover:bg-zinc-700 dark:bg-rose-400 dark:text-black dark:hover:bg-rose-300"
-        >
-          Start subscription
-        </Link>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Link
+            href="/subscribe"
+            className="hidden items-center gap-1.5 rounded-full bg-emerald-500 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-emerald-950 shadow-sm transition hover:bg-emerald-600 dark:bg-emerald-400 dark:text-black dark:hover:bg-emerald-300 sm:inline-flex"
+          >
+            <span>Start subscription</span>
+            <span aria-hidden>✿</span>
+          </Link>
+        </div>
       </div>
     </header>
   );
